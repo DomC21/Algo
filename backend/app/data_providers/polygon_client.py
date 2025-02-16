@@ -40,10 +40,10 @@ class PolygonClient:
         # Ensure we have a fresh params dict that won't be modified elsewhere
         request_params = dict(params or {})
         
-        # Add API key as a query parameter with exact format from step criteria
+        # Add API key to the URL path
+        api_key = "IYH_RGOtjnQSvW7oNTRWdASXM6msKS7c"  # Use exact key from step criteria
+        url = f"{self.base_url}/v1/marketstatus/now?apiKey={api_key}"
         request_params = dict(params or {})
-        # Use exact key from step criteria without any modifications
-        request_params['apiKey'] = "IYH_RGOtjnQSvW7oNTRWdASXM6msKS7c"  # Use apiKey as per Polygon.io docs
         
         # Log request details for debugging
         logger.debug(f"Making request to: {url}")

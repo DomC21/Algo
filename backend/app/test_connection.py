@@ -10,16 +10,18 @@ async def test_connection():
     """Test the Polygon.io API connection by fetching SPY options chain."""
     try:
         async with PolygonClient() as client:
-            # Test fetching option chain for SPY
             logger.info("Testing connection to Polygon.io API...")
-            # Print the full URL and parameters for debugging
-            test_url = f"{client.base_url}/v3/snapshot/options/SPY"
-            logger.info(f"Making request to: {test_url}")
-            logger.info(f"Using API key: {client.api_key}")
+            logger.info("Fetching SPY options chain...")
             
-            data = await client._make_request("/v3/snapshot/options/SPY")
-            logger.info("Successfully connected to Polygon.io API")
-            logger.info(f"Response data: {str(data)[:200]}...")
+            # Test the options chain endpoint
+            options = await client.get_option_chain("SPY")
+            
+            if options:
+                logger.info(f"Successfully fetched {len(options)} SPY options")
+                sample_option = options[0]
+                logger.info(f"Sample option: {sample_option}")
+            else:
+                logger.info("No options data returned")
                 
     except Exception as e:
         logger.error(f"Error testing Polygon.io connection: {str(e)}")

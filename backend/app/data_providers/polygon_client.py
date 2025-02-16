@@ -38,7 +38,11 @@ class PolygonClient:
             
         url = f"{self.base_url}{endpoint}"
         params = params or {}
+        # Add API key as a query parameter
         params['apiKey'] = self.api_key
+        
+        # Add rate limiting delay
+        await asyncio.sleep(0.2)  # Max 5 requests per second
         
         try:
             async with self.session.get(url, params=params) as response:
@@ -59,10 +63,13 @@ class PolygonClient:
         Fetch the full option chain for a given underlying symbol.
         If expiration_date is provided, only fetch options expiring on that date.
         """
-        endpoint = "/v3/snapshot/options/SPY"  # Start with snapshot endpoint for testing
+        endpoint = "/v3/reference/options/contracts"
         params = {
             "underlying_ticker": underlying_symbol,
-            "limit": 1000
+            "limit": 1000,
+            "sort": "expiration_date",
+            "order": "asc",
+            "expired": "false"
         }
         
         if expiration_date:

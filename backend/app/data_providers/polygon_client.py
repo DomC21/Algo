@@ -38,13 +38,10 @@ class PolygonClient:
             
         url = f"{self.base_url}{endpoint}"
         params = params or {}
-        headers = {
-            'Authorization': f'Bearer {self.api_key}',
-            'Content-Type': 'application/json'
-        }
+        params['apiKey'] = self.api_key
         
         try:
-            async with self.session.get(url, params=params, headers=headers) as response:
+            async with self.session.get(url, params=params) as response:
                 if response.status != 200:
                     error_text = await response.text()
                     raise PolygonAPIError(f"API request failed: {error_text}")

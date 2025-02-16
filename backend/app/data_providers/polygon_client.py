@@ -44,6 +44,11 @@ class PolygonClient:
         request_params = dict(params or {})
         request_params['apiKey'] = "IYH_RG0tjnQSvW7oNTRWdASXM6msKS7c"  # Use exact key from step criteria
         
+        # Log request details for debugging
+        logger.debug(f"Making request to: {url}")
+        logger.debug(f"With params: {request_params}")
+        logger.debug(f"API Key: {request_params['apiKey']}")
+        
         # Set basic headers
         headers = {
             'Accept': 'application/json'

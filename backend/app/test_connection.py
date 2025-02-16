@@ -14,8 +14,11 @@ async def test_connection():
             
             # Test with the simplest possible endpoint
             logger.info("Testing basic API connectivity...")
-            # Test with a v2 endpoint that's known to work
-            test_endpoint = "/v2/aggs/ticker/AAPL/prev"  # Previous day's aggregates
+            # Test with a v2 endpoint with specific date range
+            from datetime import datetime, timedelta
+            today = datetime.now()
+            yesterday = today - timedelta(days=1)
+            test_endpoint = f"/v2/aggs/ticker/AAPL/range/1/day/{yesterday.strftime('%Y-%m-%d')}/{today.strftime('%Y-%m-%d')}"
             logger.debug(f"Using API key: {client.api_key}")
             logger.debug(f"Base URL: {client.base_url}")
             logger.info(f"Testing endpoint: {test_endpoint}")

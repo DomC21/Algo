@@ -40,13 +40,12 @@ class PolygonClient:
         # Ensure we have a fresh params dict that won't be modified elsewhere
         request_params = dict(params or {})
         
-        # Add API key as a query parameter only (no bearer token needed)
+        # Add API key as a query parameter only
         request_params = dict(params or {})
-        request_params['apiKey'] = self.api_key.strip()  # Remove any whitespace
+        request_params['apiKey'] = self.api_key.strip().upper()  # API key should be uppercase
         
         headers = {
-            'Accept': 'application/json',
-            'User-Agent': 'PolygonAlgoTrading/1.0'
+            'Accept': 'application/json'
         }
         
         # Add rate limiting delay

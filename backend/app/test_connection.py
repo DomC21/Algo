@@ -14,7 +14,14 @@ async def test_connection():
             
             # Test with the simplest possible endpoint
             logger.info("Testing basic API connectivity...")
-            test_endpoint = "/reference/options/contracts?underlying_ticker=SPY&limit=1"  # Test with options endpoint
+            test_endpoint = "/v3/reference/options/contracts"
+            params = {
+                "underlying_ticker": "SPY",
+                "limit": 1,
+                "expired": "false"
+            }
+            logger.info(f"Testing endpoint: {test_endpoint} with params: {params}")
+            test_response = await client._make_request(test_endpoint, params)
             logger.info(f"Testing endpoint: {test_endpoint}")
             test_response = await client._make_request(test_endpoint)
             logger.debug(f"Full response: {test_response}")

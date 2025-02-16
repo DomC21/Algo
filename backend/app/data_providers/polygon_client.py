@@ -59,7 +59,7 @@ class PolygonClient:
         Fetch the full option chain for a given underlying symbol.
         If expiration_date is provided, only fetch options expiring on that date.
         """
-        endpoint = "/v3/reference/options/contracts"
+        endpoint = "/v3/snapshot/options/SPY"  # Start with snapshot endpoint for testing
         params = {
             "underlying_ticker": underlying_symbol,
             "limit": 1000

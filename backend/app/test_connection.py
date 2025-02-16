@@ -14,17 +14,25 @@ async def test_connection():
             
             # Test with the simplest possible endpoint
             logger.info("Testing basic API connectivity...")
-            test_endpoint = "/v3/reference/options/contracts"
-            params = {
-                "underlying_ticker": "SPY",
-                "limit": 1,
-                "expired": "false"
-            }
-            logger.info(f"Testing endpoint: {test_endpoint} with params: {params}")
-            test_response = await client._make_request(test_endpoint, params)
+            # Start with a simpler endpoint
+            test_endpoint = "/v2/aggs/ticker/AAPL/range/1/day/2024-02-01/2024-02-15"
             logger.info(f"Testing endpoint: {test_endpoint}")
             test_response = await client._make_request(test_endpoint)
             logger.debug(f"Full response: {test_response}")
+            
+            if test_response.get('status') == 'OK':
+                logger.info("Successfully connected to Polygon.io API")
+                
+                # Now test the options endpoint
+                options_endpoint = "/v3/reference/options/contracts"
+                options_params = {
+                    "underlying_ticker": "SPY",
+                    "limit": 1,
+                    "expired": "false"
+                }
+                logger.info(f"Testing options endpoint: {options_endpoint}")
+                options_response = await client._make_request(options_endpoint, options_params)
+                logger.debug(f"Options response: {options_response}")
             
             # Log response details for debugging
             if isinstance(test_response, dict):

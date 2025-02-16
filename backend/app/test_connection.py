@@ -3,7 +3,7 @@ import logging
 from datetime import datetime, timedelta
 from app.data_providers.polygon_client import PolygonClient
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 async def test_connection():

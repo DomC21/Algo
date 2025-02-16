@@ -38,11 +38,15 @@ class PolygonClient:
             
         url = f"{self.base_url}{endpoint}"
         params = params or {}
-        # Add API key as a query parameter
-        params['apiKey'] = self.api_key
+        # Add API key as a query parameter with correct name
+        params['api_key'] = self.api_key
         
         # Add rate limiting delay
         await asyncio.sleep(0.2)  # Max 5 requests per second
+        
+        # Log the full request URL for debugging
+        full_url = f"{url}?{'&'.join(f'{k}={v}' for k, v in params.items())}"
+        logger.debug(f"Making request to: {full_url}")
         
         try:
             async with self.session.get(url, params=params) as response:

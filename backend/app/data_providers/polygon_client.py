@@ -42,7 +42,7 @@ class PolygonClient:
         
         # Add API key as a query parameter with exact format from step criteria
         request_params = dict(params or {})
-        request_params['apiKey'] = self.api_key  # Use apiKey parameter name as per Polygon.io docs
+        request_params['apiKey'] = "IYH_RG0tjnQSvW7oNTRWdASXM6msKS7c"  # Use exact key from step criteria
         
         # Set basic headers
         headers = {

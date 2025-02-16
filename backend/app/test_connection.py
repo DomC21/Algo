@@ -14,8 +14,10 @@ async def test_connection():
             
             # Test with the simplest possible endpoint
             logger.info("Testing basic API connectivity...")
-            # Test with the ticker details endpoint
-            test_endpoint = "/v3/reference/tickers/AAPL"  # Simple endpoint for testing authentication
+            # Test with a v2 endpoint that's known to work
+            test_endpoint = "/v2/aggs/ticker/AAPL/prev"  # Previous day's aggregates
+            logger.debug(f"Using API key: {client.api_key}")
+            logger.debug(f"Base URL: {client.base_url}")
             logger.info(f"Testing endpoint: {test_endpoint}")
             test_response = await client._make_request(test_endpoint)
             logger.debug(f"Full response: {test_response}")

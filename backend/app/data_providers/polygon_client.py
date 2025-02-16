@@ -42,7 +42,12 @@ class PolygonClient:
         
         # Add API key as a query parameter with exact format from step criteria
         request_params = dict(params or {})
-        request_params['api_key'] = self.api_key  # Use api_key parameter name
+        request_params['apiKey'] = self.api_key  # Use apiKey parameter name as per Polygon.io docs
+        
+        # Set basic headers
+        headers = {
+            'Accept': 'application/json'
+        }
         
         # Log full request details for debugging
         full_url = f"{url}?{'&'.join(f'{k}={v}' for k, v in request_params.items())}"

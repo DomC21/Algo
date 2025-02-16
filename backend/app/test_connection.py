@@ -12,11 +12,20 @@ async def test_connection():
         async with PolygonClient() as client:
             logger.info("Testing connection to Polygon.io API...")
             
-            # Test a simple ticker details endpoint first
+            # Test with the simplest possible endpoint
             logger.info("Testing basic API connectivity...")
-            test_endpoint = "/v3/reference/tickers/SPY"
+            test_endpoint = "/v1/last/stocks/AAPL"  # Simple last trade endpoint
+            logger.info(f"Testing endpoint: {test_endpoint}")
             test_response = await client._make_request(test_endpoint)
-            logger.debug(f"Test response: {test_response}")
+            logger.debug(f"Full response: {test_response}")
+            
+            # Log response details for debugging
+            if isinstance(test_response, dict):
+                logger.debug(f"Response keys: {test_response.keys()}")
+                if 'status' in test_response:
+                    logger.debug(f"Response status: {test_response['status']}")
+                if 'error' in test_response:
+                    logger.debug(f"Response error: {test_response['error']}")
             
             if test_response.get('status') == 'OK':
                 logger.info("Basic API connectivity successful")

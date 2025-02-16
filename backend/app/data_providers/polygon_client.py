@@ -42,7 +42,7 @@ class PolygonClient:
         
         # Add API key as a query parameter only
         request_params = dict(params or {})
-        request_params['apiKey'] = self.api_key.strip().upper()  # API key should be uppercase
+        request_params['apiKey'] = self.api_key  # Use exact key format without modifications
         
         headers = {
             'Accept': 'application/json'

@@ -14,8 +14,8 @@ async def test_connection():
             
             # Test with the simplest possible endpoint
             logger.info("Testing basic API connectivity...")
-            # Start with a simpler endpoint
-            test_endpoint = "/v2/aggs/ticker/AAPL/range/1/day/2024-02-01/2024-02-15"
+            # Test with the most basic endpoint
+            test_endpoint = "/v1/marketstatus/now"  # Simple endpoint that doesn't require special permissions
             logger.info(f"Testing endpoint: {test_endpoint}")
             test_response = await client._make_request(test_endpoint)
             logger.debug(f"Full response: {test_response}")

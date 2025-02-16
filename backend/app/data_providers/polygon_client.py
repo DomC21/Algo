@@ -43,6 +43,12 @@ class PolygonClient:
         # Add API key as a query parameter (using exact format from Polygon.io docs)
         request_params['apiKey'] = self.api_key.strip()  # Remove any whitespace
         
+        # Set common headers
+        headers = {
+            'User-Agent': 'PolygonAlgoTrading/1.0',
+            'Authorization': f'Bearer {self.api_key.strip()}'
+        }
+        
         # Add rate limiting delay
         await asyncio.sleep(0.2)  # Max 5 requests per second
         
@@ -53,7 +59,7 @@ class PolygonClient:
         logger.debug(f"API Key used: {self.api_key.strip()}")
         
         try:
-            async with self.session.get(url, params=request_params) as response:
+            async with self.session.get(url, params=request_params, headers=headers) as response:
                 if response.status != 200:
                     error_text = await response.text()
                     raise PolygonAPIError(f"API request failed: {error_text}")

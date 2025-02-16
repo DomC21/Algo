@@ -37,19 +37,20 @@ class PolygonClient:
             raise RuntimeError("Client not initialized. Use 'async with' context manager.")
             
         url = f"{self.base_url}{endpoint}"
-        params = params or {}
-        # Add API key as a query parameter with correct name
-        params['api_key'] = self.api_key
+        # Ensure we have a fresh params dict that won't be modified elsewhere
+        request_params = dict(params or {})
+        # Add API key as a query parameter
+        request_params['apiKey'] = self.api_key
         
         # Add rate limiting delay
         await asyncio.sleep(0.2)  # Max 5 requests per second
         
         # Log the full request URL for debugging
-        full_url = f"{url}?{'&'.join(f'{k}={v}' for k, v in params.items())}"
+        full_url = f"{url}?{'&'.join(f'{k}={v}' for k, v in request_params.items())}"
         logger.debug(f"Making request to: {full_url}")
         
         try:
-            async with self.session.get(url, params=params) as response:
+            async with self.session.get(url, params=request_params) as response:
                 if response.status != 200:
                     error_text = await response.text()
                     raise PolygonAPIError(f"API request failed: {error_text}")

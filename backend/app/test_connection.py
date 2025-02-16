@@ -11,17 +11,28 @@ async def test_connection():
     try:
         async with PolygonClient() as client:
             logger.info("Testing connection to Polygon.io API...")
-            logger.info("Fetching SPY options chain...")
             
-            # Test the options chain endpoint
-            options = await client.get_option_chain("SPY")
+            # Test a simple ticker details endpoint first
+            logger.info("Testing basic API connectivity...")
+            test_endpoint = "/v3/reference/tickers/SPY"
+            test_response = await client._make_request(test_endpoint)
+            logger.debug(f"Test response: {test_response}")
             
-            if options:
-                logger.info(f"Successfully fetched {len(options)} SPY options")
-                sample_option = options[0]
-                logger.info(f"Sample option: {sample_option}")
+            if test_response.get('status') == 'OK':
+                logger.info("Basic API connectivity successful")
+                
+                # Now test the options chain endpoint
+                logger.info("Fetching SPY options chain...")
+                options = await client.get_option_chain("SPY")
+                
+                if options:
+                    logger.info(f"Successfully fetched {len(options)} SPY options")
+                    sample_option = options[0]
+                    logger.info(f"Sample option: {sample_option}")
+                else:
+                    logger.info("No options data returned")
             else:
-                logger.info("No options data returned")
+                logger.error("Failed basic API connectivity test")
                 
     except Exception as e:
         logger.error(f"Error testing Polygon.io connection: {str(e)}")

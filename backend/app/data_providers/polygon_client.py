@@ -36,16 +36,12 @@ class PolygonClient:
         if not self.session:
             raise RuntimeError("Client not initialized. Use 'async with' context manager.")
             
+        # Build the full URL with API key
         url = f"{self.base_url}{endpoint}"
-        # Ensure we have a fresh params dict that won't be modified elsewhere
-        request_params = dict(params or {})
         
-        # Add API key as a query parameter
+        # Add API key and other parameters
         request_params = dict(params or {})
-        request_params['apiKey'] = "IYH_RGOtjnQSvW7oNTRWdASXM6msKS7c"  # Use exact key from step criteria
-        
-        # Build the full URL
-        url = f"{self.base_url}{endpoint}"
+        request_params['apikey'] = "IYH_RGOtjnQSvW7oNTRWdASXM6msKS7c"  # Use exact key from step criteria with lowercase parameter name
         
         # Log request details for debugging
         logger.debug(f"Making request to: {url}")

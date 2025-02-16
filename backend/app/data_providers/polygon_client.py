@@ -4,8 +4,8 @@ from datetime import datetime, timedelta
 from typing import List, Optional, Dict
 import logging
 
-from ..models.option_data import OptionData, OptionType
-from ..config import POLYGON_API_KEY, POLYGON_BASE_URL, TRACKED_ASSETS
+from app.models.option_data import OptionData, OptionType
+from app.config import POLYGON_API_KEY, POLYGON_BASE_URL, TRACKED_ASSETS
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -38,10 +38,13 @@ class PolygonClient:
             
         url = f"{self.base_url}{endpoint}"
         params = params or {}
-        params['apiKey'] = self.api_key
+        headers = {
+            'Authorization': f'Bearer {self.api_key}',
+            'Content-Type': 'application/json'
+        }
         
         try:
-            async with self.session.get(url, params=params) as response:
+            async with self.session.get(url, params=params, headers=headers) as response:
                 if response.status != 200:
                     error_text = await response.text()
                     raise PolygonAPIError(f"API request failed: {error_text}")

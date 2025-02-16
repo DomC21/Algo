@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Polygon.io API configuration
-POLYGON_API_KEY = "IYH_RGOtjnQSvW7oNTRWdASXM6msKS7c"  # Using exact format from step criteria with O instead of 0
+POLYGON_API_KEY = "IYH_RG0tjnQSvW7oNTRWdASXM6msKS7c"  # Using exact format from step criteria with zero
 POLYGON_BASE_URL = "https://api.polygon.io"
 
 # List of assets to track

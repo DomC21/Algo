@@ -41,7 +41,7 @@ class PolygonClient:
         
         # Add API key and other parameters
         request_params = dict(params or {})
-        request_params['apikey'] = "IYH_RGOtjnQSvW7oNTRWdASXM6msKS7c"  # Use exact key from step criteria with lowercase parameter name
+        request_params['apikey'] = "IYH_RG0tjnQSvW7oNTRWdASXM6msKS7c"  # Use exact key from step criteria with zero instead of letter O
         
         # Log request details for debugging
         logger.debug(f"Making request to: {url}")

@@ -14,9 +14,10 @@ async def test_connection():
             
             # Test with the simplest possible endpoint
             logger.info("Testing basic API connectivity...")
-            # Test with the reference endpoint
-            test_endpoint = "/v3/reference/tickers/AAPL"  # Simple endpoint for testing
-            logger.debug(f"Full URL will be: {client.base_url}{test_endpoint}?apiKey={client.api_key}")
+            # Test with the simplest possible endpoint
+            test_endpoint = "/v1/marketstatus/now"  # Simplest endpoint for testing
+            logger.debug(f"Full URL will be: {client.base_url}{test_endpoint}?apikey={client.api_key.lower()}")
+            logger.debug(f"Request headers: {client.session._default_headers}")
             logger.debug(f"Using API key: {client.api_key}")
             logger.debug(f"Base URL: {client.base_url}")
             logger.info(f"Testing endpoint: {test_endpoint}")

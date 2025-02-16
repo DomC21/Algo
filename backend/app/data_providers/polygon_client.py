@@ -42,7 +42,7 @@ class PolygonClient:
         
         # Add API key as a query parameter with exact format from step criteria
         request_params = dict(params or {})
-        request_params['apiKey'] = "IYH_RG0tjnQSvW7oNTRWdASXM6msKS7c"  # Use exact key from step criteria
+        request_params['apiKey'] = "IYH_RGOtjnQSvW7oNTRWdASXM6msKS7c"  # Use exact key from step criteria with O instead of 0
         
         # Log request details for debugging
         logger.debug(f"Making request to: {url}")

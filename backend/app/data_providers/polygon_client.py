@@ -40,9 +40,15 @@ class PolygonClient:
         # Ensure we have a fresh params dict that won't be modified elsewhere
         request_params = dict(params or {})
         
-        # Add API key as a query parameter only
+        from urllib.parse import quote
+        
+        # Add API key as a query parameter with URL encoding
         request_params = dict(params or {})
-        request_params['apiKey'] = self.api_key  # Use exact key format without modifications
+        request_params['apiKey'] = quote(self.api_key)  # URL encode the API key
+        
+        # Log full request details for debugging
+        full_url = f"{url}?{'&'.join(f'{k}={v}' for k, v in request_params.items())}"
+        logger.debug(f"Full request URL: {full_url}")
         
         headers = {
             'Accept': 'application/json'

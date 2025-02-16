@@ -14,8 +14,8 @@ async def test_connection():
             
             # Test with the simplest possible endpoint
             logger.info("Testing basic API connectivity...")
-            # Test with the most basic endpoint
-            test_endpoint = "/v1/marketstatus/now"  # Simple endpoint that doesn't require special permissions
+            # Test with the ticker details endpoint
+            test_endpoint = "/v3/reference/tickers/AAPL"  # Simple endpoint for testing authentication
             logger.info(f"Testing endpoint: {test_endpoint}")
             test_response = await client._make_request(test_endpoint)
             logger.debug(f"Full response: {test_response}")

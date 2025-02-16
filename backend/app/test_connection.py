@@ -14,7 +14,7 @@ async def test_connection():
             
             # Test with the simplest possible endpoint
             logger.info("Testing basic API connectivity...")
-            test_endpoint = "/v2/aggs/ticker/AAPL/prev"  # Previous day's aggregates - recommended test endpoint
+            test_endpoint = "/reference/options/contracts?underlying_ticker=SPY&limit=1"  # Test with options endpoint
             logger.info(f"Testing endpoint: {test_endpoint}")
             test_response = await client._make_request(test_endpoint)
             logger.debug(f"Full response: {test_response}")

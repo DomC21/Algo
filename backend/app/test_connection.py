@@ -15,7 +15,7 @@ async def test_connection():
             # Test with the simplest possible endpoint
             logger.info("Testing basic API connectivity...")
             # Test with the simplest possible endpoint
-            test_endpoint = "/v2/aggs/ticker/AAPL/prev"  # Previous day's aggregates
+            test_endpoint = "/v1/marketstatus/now"  # Simplest endpoint for testing
             logger.debug(f"Full URL will be: {client.base_url}{test_endpoint}?apiKey=IYH_RGOtjnQSvW7oNTRWdASXM6msKS7c")
             logger.debug(f"Using API key: {client.api_key}")
             logger.debug(f"Base URL: {client.base_url}")

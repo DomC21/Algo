@@ -49,8 +49,7 @@ class PolygonClient:
         
         # Set basic headers
         headers = {
-            'Accept': 'application/json',
-            'Authorization': f'Bearer {request_params["apikey"]}'
+            'Accept': 'application/json'
         }
         
         # Log full request details for debugging

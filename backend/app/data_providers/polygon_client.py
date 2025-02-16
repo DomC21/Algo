@@ -46,7 +46,7 @@ class PolygonClient:
         # Log request details for debugging
         logger.debug(f"Making request to: {url}")
         logger.debug(f"With params: {request_params}")
-        logger.debug(f"API Key: {request_params['apiKey']}")
+        logger.debug(f"API Key: {request_params['apikey']}")
         logger.debug(f"API Key: {request_params['apiKey']}")
         
         # Set basic headers

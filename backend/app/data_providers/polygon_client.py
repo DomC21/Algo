@@ -43,11 +43,12 @@ class PolygonClient:
         # Add API key as a query parameter with exact format from step criteria
         request_params = dict(params or {})
         # Use exact key from step criteria without any modifications
-        request_params['apikey'] = "IYH_RGOtjnQSvW7oNTRWdASXM6msKS7c"  # Use lowercase 'apikey' as per Polygon.io docs
+        request_params['apiKey'] = "IYH_RGOtjnQSvW7oNTRWdASXM6msKS7c"  # Use apiKey as per Polygon.io docs
         
         # Log request details for debugging
         logger.debug(f"Making request to: {url}")
         logger.debug(f"With params: {request_params}")
+        logger.debug(f"API Key: {request_params['apiKey']}")
         logger.debug(f"API Key: {request_params['apiKey']}")
         
         # Set basic headers

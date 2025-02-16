@@ -15,8 +15,8 @@ async def test_connection():
             # Test with the simplest possible endpoint
             logger.info("Testing basic API connectivity...")
             # Test with the simplest possible endpoint
-            test_endpoint = "/v1/marketstatus/now"  # Simplest endpoint for testing
-            logger.debug(f"Full URL will be: {client.base_url}{test_endpoint}?apiKey=IYH_RGOtjnQSvW7oNTRWdASXM6msKS7c")
+            test_endpoint = "/marketstatus/now"  # Simplest endpoint for testing
+            logger.debug(f"Full URL will be: {client.base_url}/v1/{client.api_key}{test_endpoint}")
             logger.debug(f"Using API key: {client.api_key}")
             logger.debug(f"Base URL: {client.base_url}")
             logger.info(f"Testing endpoint: {test_endpoint}")

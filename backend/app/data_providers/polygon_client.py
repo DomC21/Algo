@@ -41,7 +41,7 @@ class PolygonClient:
         
         # Add API key as query parameter
         request_params = dict(params or {})
-        request_params['apiKey'] = self.api_key  # Use the key from config
+        request_params['apiKey'] = self.api_key  # Use the new API key from config
         
         # Log request details for debugging
         logger.debug(f"Making request to: {url}")

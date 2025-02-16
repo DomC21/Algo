@@ -40,19 +40,13 @@ class PolygonClient:
         # Ensure we have a fresh params dict that won't be modified elsewhere
         request_params = dict(params or {})
         
-        from urllib.parse import quote
-        
-        # Add API key as a query parameter with URL encoding
+        # Add API key as a query parameter with exact format from step criteria
         request_params = dict(params or {})
-        request_params['apiKey'] = quote(self.api_key)  # URL encode the API key
+        request_params['api_key'] = self.api_key  # Use api_key parameter name
         
         # Log full request details for debugging
         full_url = f"{url}?{'&'.join(f'{k}={v}' for k, v in request_params.items())}"
         logger.debug(f"Full request URL: {full_url}")
-        
-        headers = {
-            'Accept': 'application/json'
-        }
         
         # Add rate limiting delay
         await asyncio.sleep(0.2)  # Max 5 requests per second
